@@ -5,9 +5,6 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(byteBankApp());
-  save(Contact(1, 'mari', 1000)).then((id) {
-    findAll().then((contacts) => debugPrint(contacts.toString()));
-  });
 }
 
 // ignore: camel_case_types
