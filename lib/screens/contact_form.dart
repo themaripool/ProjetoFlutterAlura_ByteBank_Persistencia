@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bytebank/Models/contacts.dart';
 import 'package:bytebank/database/app_database.dart';
 import 'package:flutter/material.dart';
@@ -51,10 +53,11 @@ class _ContactFormState extends State<ContactForm> {
                 width: double.maxFinite,
                   child: RaisedButton(
                   onPressed: (){
+                    var rng = new Random();
                     final String name = _nameController.text;
                     final int accountNumber = int.tryParse(_accountNumberController.text);
 
-                    final Contact newContact = Contact(5, name, accountNumber);
+                    final Contact newContact = Contact(rng.nextInt(1000), name, accountNumber);
                     //salvar info no bd
                     save(newContact).then((id) => Navigator.pop(context));
                     
