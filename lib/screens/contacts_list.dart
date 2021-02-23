@@ -1,5 +1,5 @@
+import 'package:bytebank/DAO/contact_DAO.dart';
 import 'package:bytebank/Models/contacts.dart';
-import 'package:bytebank/database/app_database.dart';
 import 'package:bytebank/screens/contact_form.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +10,7 @@ class ContactList extends StatefulWidget {
 
 class _ContactListState extends State<ContactList> {
   @override
+  final contactDAO _dao = contactDAO();
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -20,7 +21,7 @@ class _ContactListState extends State<ContactList> {
         // executa o codigo do builder aonde esta o callback
         //snapshot -> contem todas as informacoes do future acima dele
         initialData: List(),
-        future: findAll(),
+        future: _dao.findAll(),
         builder: (context, snapshot) {
           //snapshot.connectionState) -> indica atual estado do snapshot
           switch (snapshot.connectionState) {
