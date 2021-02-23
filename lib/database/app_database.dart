@@ -11,7 +11,11 @@ Future<Database> createDatabase(){
         'id INTEGER PRIMARY KEY, '
           'name TEXT, '
         'account_number INTEGER)');
-    }, version: 1);
+    }, 
+    version: 1, //da upgrade de versao e dps downgrade para executar o delete
+    //remover dados bd
+    //onDowngrade: onDatabaseDowngradeDelete,
+    );
   });
 }
 

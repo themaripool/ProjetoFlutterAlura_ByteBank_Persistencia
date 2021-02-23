@@ -3,7 +3,12 @@ import 'package:bytebank/database/app_database.dart';
 import 'package:bytebank/screens/contact_form.dart';
 import 'package:flutter/material.dart';
 
-class ContactList extends StatelessWidget {
+class ContactList extends StatefulWidget {
+  @override
+  _ContactListState createState() => _ContactListState();
+}
+
+class _ContactListState extends State<ContactList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +26,8 @@ class ContactList extends StatelessWidget {
           switch (snapshot.connectionState) {
             case ConnectionState.none: //future ainda n executado
               break;
-            case ConnectionState.waiting: //verificando se future esta carregando
+            case ConnectionState
+                .waiting: //verificando se future esta carregando
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -30,7 +36,8 @@ class ContactList extends StatelessWidget {
                 ),
               );
               break;
-            case ConnectionState.active: //tem dado disponivel mas future n acabou
+            case ConnectionState
+                .active: //tem dado disponivel mas future n acabou
               // carregamento por partes
               break;
             case ConnectionState.done: // future acabou
@@ -44,17 +51,20 @@ class ContactList extends StatelessWidget {
               );
               break;
           }
-          return Text("Erro desconhecido");//nao sera executado pq o snapshot ja tem todos os casos possiveis
+          return Text(
+              "Erro desconhecido"); //nao sera executado pq o snapshot ja tem todos os casos possiveis
         },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context)
-              .push(MaterialPageRoute(
-                builder: (context) => ContactForm(),
-              ))
+              .push(
+                MaterialPageRoute(
+                  builder: (context) => ContactForm(),
+                ),
+              )
               .then(
-                (newContact) => debugPrint(newContact.toString()),
+                (value) => setState(() {}),
               );
         },
         child: Icon(Icons.add),
